@@ -113,3 +113,9 @@ target_link_libraries(${PROJECT_NAME}-test_4 cpp_message_library testlib ${catki
 
 catkin_add_gmock(${PROJECT_NAME}-test_5 test/test_MobilityRequest.cpp)
 target_link_libraries(${PROJECT_NAME}-test_5 cpp_message_library testlib ${catkin_LIBRARIES})
+
+if (CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest_gtest(MobilityResponse_rostest test/rostests/MobilityResponse_rostest.test src/rostests.2/rostest_MobilityResponse.cpp)
+  target_link_libraries(MobilityResponse_rostest ${catkin_LIBRARIES})
+endif()
