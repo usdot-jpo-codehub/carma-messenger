@@ -69,17 +69,9 @@ namespace cpp_message
                 position.latitude = j2735_v2x_msgs::msg::Position3D::LATITUDE_UNAVAILABLE;
             }
             else{
-                long latitude = message->value.choice.PersonalSafetyMessage.position.lat;
-                if (latitude >= j2735_v2x_msgs::msg::Position3D::LATITUDE_MAX){
-                    RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Latitude greater than max, defaulting to max latitude");
-                    latitude = j2735_v2x_msgs::msg::Position3D::LATITUDE_MAX;
-                }
-                else if(latitude < j2735_v2x_msgs::msg::Position3D::LATITUDE_MIN){
-                    RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Latitude less than min, defaulting to min latitude");
-                    latitude = j2735_v2x_msgs::msg::Position3D::LATITUDE_MIN;
-                }
-                position.latitude = latitude;
-                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Decoding position, incoming value:  "<<latitude<<"  Calculated value: "<<position.latitude);
+                position.latitude = message->value.choice.PersonalSafetyMessage.position.lat;
+                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(),"Incoming value: "<< message->value.choice.PersonalSafetyMessage.position.lat);
+                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Calculated value: "<<position.latitude);
             }
 
             if(!message->value.choice.PersonalSafetyMessage.position.Long){
@@ -87,17 +79,8 @@ namespace cpp_message
                 position.longitude = j2735_v2x_msgs::msg::Position3D::LONGITUDE_UNAVAILABLE;
             }
             else{
-                long longitude = message->value.choice.PersonalSafetyMessage.position.Long;
-                if(longitude > j2735_v2x_msgs::msg::Position3D::LONGITUDE_MAX){
-                    RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Longitude greater than max, defaulting to max longitude");
-                    longitude = j2735_v2x_msgs::msg::Position3D::LONGITUDE_MAX;
-                }
-                else if(longitude <j2735_v2x_msgs::msg::Position3D::LONGITUDE_MIN){
-                    RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Longitude less than min, defaulting to min longitude");
-                    longitude = j2735_v2x_msgs::msg::Position3D::LONGITUDE_MIN;
-                }
-                position.longitude = longitude;
-                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Decoding position, incoming value:  "<<longitude<<"  Calculated value: "<<position.longitude);
+                position.longitude = message->value.choice.PersonalSafetyMessage.position.Long;
+                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(),"Calculated value: "<<position.longitude);
             }
 
             if(!message->value.choice.PersonalSafetyMessage.position.elevation){
