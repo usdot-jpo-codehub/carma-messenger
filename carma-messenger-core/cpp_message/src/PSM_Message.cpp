@@ -79,6 +79,7 @@ namespace cpp_message
                     latitude = j2735_v2x_msgs::msg::Position3D::LATITUDE_MIN;
                 }
                 position.latitude = latitude;
+                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Decoding position, incoming value:  "<<latitude<<"  Calculated value: "<<position.latitude);
             }
 
             if(!message->value.choice.PersonalSafetyMessage.position.Long){
@@ -96,6 +97,7 @@ namespace cpp_message
                     longitude = j2735_v2x_msgs::msg::Position3D::LONGITUDE_MIN;
                 }
                 position.longitude = longitude;
+                RCLCPP_DEBUG_STREAM(node_logging_->get_logger(), "Decoding position, incoming value:  "<<longitude<<"  Calculated value: "<<position.longitude);
             }
 
             if(!message->value.choice.PersonalSafetyMessage.position.elevation){
